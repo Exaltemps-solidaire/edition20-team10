@@ -273,14 +273,14 @@ button {
   color: var(--bleu-profond);
 }
 
-/* Missions : un fait par ligne, pas une carte */
-.liste-missions {
+/* Fiches : un fait par ligne, pas une carte (missions, événements...) */
+.liste-fiches {
   list-style: none;
   display: flex;
   flex-direction: column;
 }
 
-.liste-missions li {
+.liste-fiches li {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -288,16 +288,16 @@ button {
   border-top: 1px solid var(--cyan-clair);
 }
 
-.liste-missions li:last-child {
+.liste-fiches li:last-child {
   border-bottom: 1px solid var(--cyan-clair);
 }
 
-.mission-titre {
+.fiche-titre {
   font-weight: 700;
   color: var(--indigo);
 }
 
-.mission-texte {
+.fiche-texte {
   color: var(--encre);
   font-size: 0.95rem;
 }

@@ -232,8 +232,8 @@ Le développeur a extrait un design system directement du site officiel (`passat
 
 ## À venir (liste ordonnée, non détaillée)
 
-1. Calendrier des événements : filtrage par type et par période, cartes avec photo et description.
-2. Fiche action solidaire : détail d'une action existante (photos, explications).
+1. Calendrier des événements : filtrage par type et par période, photos — bloqué tant qu'aucune source de données réelle (dates, lieux, photos par instance) n'est fournie par les cadreurs.
+2. Fiche action solidaire : détail d'une action existante (photos, explications) — même blocage que ci-dessus.
 3. Page de profil donateur : dons passés, participations, impact en mode gamification, lien visible vers le don (iRaiser).
 4. Parcours entreprise mécène et testateur (non cadrés dans la passation au-delà des jobs-to-be-done).
 5. Design — fidélité restante à `design.md` : boutons exacts (pill don, outline bleu, outline blanc), bandeau citation avec papillons en filigrane, assets SVG réels (rayures hachurées, traits manuscrits), wordmark du logo (bleu + script).
@@ -261,3 +261,24 @@ Demande du développeur en cours de session : `/` servait de choix de persona, p
     - `frontend/src/app/globals.css` (modifié) — classe `.liste-missions` et ses sous-éléments.
     - `frontend/src/lib/usePersonaActif.ts` (modifié) — redirections vers `/qui-etes-vous` au lieu de `/`.
     - `e2e/demo.spec.ts` (modifié, hors DoD) — étape d'ouverture sur la page de présentation puis clic sur « Trouver mon parcours » ajoutées avant le choix de persona.
+
+## Itération 9 : Calendrier des événements — les deux types réels, pas des instances inventées
+
+❗️ Recherche dans la passation : aucune action individuelle réelle n'a de date, de lieu ou de photo (pas de liste des « 200+ actions » à l'unité). Seuls deux noms d'événements récurrents existent (`contexte/association.md`, `7-prd.md`) : la course « Enfants sans Cancer » et le « Rallye du Cœur ». L'objectif « filtrage par type et par période, cartes avec photo » de la liste « À venir » n'est donc pas réalisable sans inventer des instances — ce que le hackathon interdit. Fait à la place : les deux types réels, et le fait « 200+ » déjà utilisé en itération 6, sans fausse liste. À confirmer par les cadreurs si une vraie source de données (dates, lieux) existe ailleurs.
+
+- **Dans le périmètre** : `calendrier/page.tsx` présente les deux événements récurrents réels, le chiffre « 200+ » (comme sur la page organisateur), et une phrase honnête sur l'absence de détail individuel pour l'instant.
+- **Hors périmètre** : filtrage interactif (pas de données réelles suffisantes), photos, fiche détail d'une action individuelle.
+- **Critères d'acceptation** :
+  - Étant donné `/calendrier`, quand je le consulte, alors je vois les deux événements réels (nom + description courte).
+  - Étant donné `/calendrier`, quand je le consulte, alors le chiffre « 200+ actions » apparaît, sans liste d'instances inventées.
+  - Étant donné l'application déployée, `/sante` et `/health` répondent toujours 200.
+- **Codage estimé** : 5 minutes.
+- **Bilan** :
+  - Durée de codage réelle : moins d'1 minute (pas de dépassement), d'après `.iterations/9.debut`/`.iterations/9.fin`.
+  - Critères satisfaits : vérifiés par `curl localhost:8080/calendrier` (les deux noms d'événements et « 200+ » présents dans le HTML exporté) et `/sante`, `/health` à 200.
+  - Rien de reporté sur les critères ; le filtrage par type/période et les photos restent hors périmètre faute de données réelles — notés dans « À venir ».
+  - Le harnais n'a rien bloqué : `npm test` passe (4 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 9` a été accepté (`moteur_avance: false`, version 9 enregistrée).
+  - **Modifications** :
+    - `frontend/src/app/calendrier/page.tsx` (réécrit) — les deux événements réels, chiffre « 200+ », phrase honnête sur l'absence de détail individuel ; critères 1 et 2.
+    - `frontend/src/app/globals.css` (modifié) — renomme `.liste-missions`/`.mission-*` en `.liste-fiches`/`.fiche-*` (classe générique, réutilisée par le calendrier).
+    - `frontend/src/app/page.tsx` (modifié) — suit le renommage de classe ci-dessus.

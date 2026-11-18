@@ -37,11 +37,11 @@ export default function Accueil() {
         </div>
       </section>
       <main className="contenu">
-        <ul className="liste-missions">
+        <ul className="liste-fiches">
           {missions.map((mission) => (
             <li key={mission.titre}>
-              <span className="mission-titre">{mission.titre}</span>
-              <span className="mission-texte">{mission.texte}</span>
+              <span className="fiche-titre">{mission.titre}</span>
+              <span className="fiche-texte">{mission.texte}</span>
             </li>
           ))}
         </ul>
