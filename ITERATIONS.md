@@ -124,9 +124,27 @@ Demande du développeur en cours de session (temps restant annoncé : 60 minutes
     - `frontend/src/app/accueil/page.tsx` (modifié) — applique les classes partagées ; critère 2.
     - `frontend/src/components/EnTete.tsx` (modifié) — en-tête restylée (identité, navigation à 3 segments) ; critère 2.
 
-## Itération 4 : Design B — page organisateur et calendrier (à détailler au prochain `/iteration`)
+## Itération 4 : Design B — page organisateur et calendrier
 
-Même principe que l'itération 3, appliqué à `organisateur/page.tsx` et `calendrier/page.tsx` avec les tokens déjà posés. Pas de nouveau token attendu : réutilisation de ceux de l'itération 3.
+- **Dans le périmètre** : restylage de `organisateur/page.tsx` et `calendrier/page.tsx` avec les tokens posés en itération 3 (aucun nouveau token).
+- **Hors périmètre** : contenu réel du calendrier (toujours un stub).
+- **Critères d'acceptation** :
+  - Étant donné la page organisateur, quand je la consulte, alors elle utilise les mêmes classes/tokens que l'accueil (page, contenu, en-tête) et son lien vers le calendrier est un bouton d'action visible (`cta`).
+  - Étant donné la page calendrier, quand je la consulte, alors elle utilise le même gabarit de page.
+  - Étant donné l'application déployée, quand j'appelle `/health` et `/sante`, alors je reçois toujours 200.
+- **Hypothèse de l'équipe couverte** : aucune directement — suite du changement de priorité demandé en cours de session.
+- **Codage estimé** : 5 minutes.
+- **Fichiers prévus** : `organisateur/page.tsx`, `calendrier/page.tsx`.
+- **Tests unitaires prévus** : aucun nouveau (balisage/styles, pas de logique métier).
+- **Étapes ajoutées à la démo** : aucune (pas de nouveau parcours).
+- **Bilan** :
+  - Durée de codage réelle : moins d'1 minute (pas de dépassement), d'après `.iterations/4.debut`/`.iterations/4.fin`.
+  - Critères satisfaits : vérifiés par `curl` (`/organisateur`, `/calendrier`, `/health`, `/sante` tous 200) et par lecture du code (classes `page`, `contenu`, `cta` appliquées). ⚠️ Même limite que les itérations précédentes : pas de capture d'écran possible sur cette machine (dépendance système manquante), rendu visuel à confirmer par le développeur.
+  - Rien de reporté sur cette itération.
+  - Le harnais n'a rien bloqué : `npm test` passe (6 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 4` a été accepté (`moteur_avance: false`, version 4 enregistrée).
+  - **Modifications** :
+    - `frontend/src/app/organisateur/page.tsx` (modifié) — classes `page`/`contenu`/`cta` ; critère 1.
+    - `frontend/src/app/calendrier/page.tsx` (modifié) — classes `page`/`contenu` ; critère 2.
 
 ---
 

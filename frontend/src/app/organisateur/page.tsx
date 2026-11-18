@@ -12,16 +12,18 @@ export default function PageOrganisateur() {
   }
 
   return (
-    <div>
+    <div className="page">
       <EnTete personaActif={personaActif} onChangerDePersona={changerDePersona} />
-      <main>
+      <main className="contenu">
         <h1>Organiser une action solidaire</h1>
         <p>
           Vous voulez lancer une collecte, une course ou un évènement au profit
           d&apos;Imagine for Margo ? Nous vous accompagnons de l&apos;idée à la
           réalisation.
         </p>
-        <Link href="/calendrier">Voir les actions déjà organisées</Link>
+        <Link href="/calendrier" className="cta">
+          Voir les actions déjà organisées
+        </Link>
       </main>
     </div>
   );
