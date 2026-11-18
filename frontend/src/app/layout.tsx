@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Fredoka, Work_Sans } from "next/font/google";
+import { Source_Sans_3, Schoolbell } from "next/font/google";
 import "./globals.css";
 
-const fredoka = Fredoka({
-  variable: "--font-titre",
-  weight: ["600", "700"],
+const sourceSans = Source_Sans_3({
+  variable: "--font-texte",
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
 
-const workSans = Work_Sans({
-  variable: "--font-texte",
-  weight: ["400", "500"],
+const schoolbell = Schoolbell({
+  variable: "--font-accroche",
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${fredoka.variable} ${workSans.variable}`}>
+    <html lang="fr" className={`${sourceSans.variable} ${schoolbell.variable}`}>
       <body>{children}</body>
     </html>
   );

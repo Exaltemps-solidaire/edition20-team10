@@ -8,11 +8,11 @@ export function Papillon({ className }: { className?: string }) {
     >
       <path
         d="M24 14C21 6 10 4 6 10c-3 4.5 0 11 8 13-8 2-11 8.5-8 13 4 6 15 4 18-4"
-        fill="var(--cerise)"
+        fill="var(--rose)"
       />
       <path
         d="M24 14c3-8 14-10 18-4 3 4.5 0 11-8 13 8 2 11 8.5 8 13-4 6-15 4-18-4"
-        fill="var(--or)"
+        fill="var(--bleu)"
       />
       <rect x="22.5" y="11" width="3" height="26" rx="1.5" fill="var(--encre)" />
     </svg>

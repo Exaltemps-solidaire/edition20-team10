@@ -198,6 +198,36 @@ Retour du développeur après l'itération 4 : le design reste trop simple. Dema
     - `frontend/src/app/organisateur/page.tsx` (modifié) — ajoute le chiffre clé ; critère 1.
     - `frontend/src/app/calendrier/page.tsx` (modifié) — copie de l'état vide plus concrète ; critère 2.
 
+## ⚠️ Design system réel récupéré par le développeur — correction de la palette
+
+Le développeur a extrait un design system directement du site officiel (`passation/design/design.md`, mesuré sur les styles calculés le 18/11/2026). Il confirme et contredit à la fois l'approximation des itérations 3–6 : le papillon et le principe « un seul moment fort » étaient dans la bonne direction, mais la vraie palette est **bleu `#1EA4DA` / indigo `#342A7B` / rose `#E24483`** (pas cerise/pancho/or), et la typo d'accroche est **Schoolbell** (pas Fredoka). Le document dit explicitement : « Conserver le trio bleu / indigo / rose et le papillon : c'est l'ADN reconnu par les donateurs. »
+
+## Itération 7 : palette et typographies réelles de la charte — plan validé le 18/11/2026
+
+- **Temps restant annoncé** : 15 minutes (à 17:48). Dernière itération probable : pas de place pour un tour de test de l'équipe après publication.
+- **Dans le périmètre** : remplacer les tokens approximés (cerise/pancho/or, Fredoka/Work Sans) par les tokens réels (bleu/indigo/rose, Source Sans Pro + Schoolbell pour l'accroche hero uniquement).
+- **Hors périmètre** : restyle exact des boutons (pill don / outline bleu / outline blanc), bandeau citation indigo/cyan dédié, assets SVG réels (papillons, rayures hachurées, traits manuscrits) — reportés dans « À venir ».
+- **Critères d'acceptation** :
+  - Étant donné n'importe quel écran, quand je le consulte, alors les couleurs de marque sont bleu/indigo/rose (plus cerise/pancho/or).
+  - Étant donné l'accueil, quand je le consulte, alors l'accroche hero est en Schoolbell.
+  - Étant donné l'application déployée, quand j'appelle `/health` et `/sante`, alors je reçois toujours 200.
+- **Hypothèse de l'équipe couverte** : aucune directement — correction de fidélité à la charte réelle.
+- **Codage estimé** : 5 minutes.
+- **Fichiers prévus** : `globals.css`, `layout.tsx`.
+- **Tests unitaires prévus** : aucun nouveau (styles purs).
+- **Étapes ajoutées à la démo** : aucune.
+- **Bilan** :
+  - Durée de codage réelle : 2 minutes (pas de dépassement), d'après `.iterations/7.debut`/`.iterations/7.fin`.
+  - Critères satisfaits : vérifiés en lisant la CSS réellement servie (`curl localhost:8080/_next/static/chunks/*.css | grep -- '--bleu\|--indigo\|--rose'` renvoie les 3 tokens, aucune trace de `cerise`), et `/sante` (8080) + `/health` (8081) toujours 200. Le critère Schoolbell n'a pas pu être vérifié visuellement (même limite de capture d'écran que toutes les itérations de design) mais la police est bien déclarée et servie via `next/font/google`.
+  - Rien de reporté sur les 3 critères. Un 3ᵉ fichier a été touché au-delà du plan (`components/Papillon.tsx`) : ses couleurs étaient codées en `var(--cerise)`/`var(--or)`, devenus inexistants après le changement de tokens — correction nécessaire, pas une extension de périmètre.
+  - La teinte de survol du bouton `.cta` (`--rose-profond: #b8356a`) est dérivée, pas dans `design.md` qui ne documente pas d'état hover pour le rose : à confirmer ou ajuster si l'association fournit une nuance officielle.
+  - Reporté dans « À venir » : restyle exact des boutons (pill don / outline bleu / outline blanc), bandeau citation dédié avec papillons en filigrane, assets SVG réels (rayures hachurées, traits manuscrits), vraie typo wordmark du logo (bleu + script).
+  - Le harnais n'a rien bloqué : `npm test` passe (4 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 7` a été accepté (`moteur_avance: false`, version 7 enregistrée).
+  - **Modifications** :
+    - `frontend/src/app/globals.css` (réécrit) — tokens réels (bleu/indigo/rose/cyan-clair/encre), suppression de `--font-titre` partagée (les titres reviennent au texte courant en gras, comme la charte), accroche hero en Schoolbell, bandeau `.chiffre-cle` en indigo/cyan comme prescrit par `design.md` ; sert les 3 critères.
+    - `frontend/src/app/layout.tsx` (modifié) — polices `Source_Sans_3` (`--font-texte`) et `Schoolbell` (`--font-accroche`) via `next/font/google`, remplacent Fredoka/Work Sans ; critère 2.
+    - `frontend/src/components/Papillon.tsx` (modifié) — couleurs des ailes `var(--rose)`/`var(--bleu)` au lieu de `var(--cerise)`/`var(--or)`, tokens supprimés ; critère 1.
+
 ---
 
 ## À venir (liste ordonnée, non détaillée)
@@ -206,3 +236,4 @@ Retour du développeur après l'itération 4 : le design reste trop simple. Dema
 2. Fiche action solidaire : détail d'une action existante (photos, explications).
 3. Page de profil donateur : dons passés, participations, impact en mode gamification, lien visible vers le don (iRaiser).
 4. Parcours entreprise mécène et testateur (non cadrés dans la passation au-delà des jobs-to-be-done).
+5. Design — fidélité restante à `design.md` : boutons exacts (pill don, outline bleu, outline blanc), bandeau citation avec papillons en filigrane, assets SVG réels (rayures hachurées, traits manuscrits), wordmark du logo (bleu + script).

@@ -1,11 +1,12 @@
 :root {
-  --cerise: #e44585;
-  --cerise-profond: #a82f63;
-  --pancho: #edc7a8;
-  --or: #c9a227;
-  --or-pale: #f4e8c8;
-  --creme: #fbf6f1;
-  --encre: #231f20;
+  --bleu: #1ea4da;
+  --bleu-profond: #1882ad;
+  --indigo: #342a7b;
+  --rose: #e24483;
+  --rose-profond: #b8356a;
+  --cyan-clair: #c9ecf0;
+  --fond: #ffffff;
+  --encre: #1a1a2e;
   --blanc: #ffffff;
 }
 
@@ -30,7 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--encre);
-  background: var(--creme);
+  background: var(--fond);
   font-family: var(--font-texte), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,20 +43,20 @@ a {
 
 h1,
 h2 {
-  font-family: var(--font-titre), var(--font-texte), sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   line-height: 1.15;
 }
 
 h1 {
   font-size: 2.25rem;
+  color: var(--indigo);
 }
 
-/* Bande d'accueil : le seul moment fort de la page, en plein bord */
+/* Bande d'accueil : le seul moment fort de la page, l'accroche en Schoolbell */
 .bande-accueil {
-  background: linear-gradient(135deg, var(--or-pale), var(--pancho) 70%);
-  border-bottom: 1px solid var(--pancho);
+  background: var(--cyan-clair);
+  border-bottom: 1px solid var(--bleu);
 }
 
 .bande-accueil-interieur {
@@ -74,12 +75,15 @@ h1 {
 }
 
 .bande-accueil h1 {
+  font-family: var(--font-accroche), var(--font-texte), sans-serif;
+  font-weight: 400;
   font-size: 2.5rem;
+  color: var(--bleu);
 }
 
 .bande-accueil p {
   margin-top: 0.4rem;
-  color: var(--cerise-profond);
+  color: var(--indigo);
   font-size: 1.05rem;
 }
 
@@ -87,9 +91,9 @@ h1 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-titre), var(--font-texte), sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.05rem;
+  color: var(--indigo);
 }
 
 .marque .papillon {
@@ -142,7 +146,7 @@ button {
   padding: 1.1rem 0.25rem;
   background: none;
   border: none;
-  border-top: 1px solid var(--pancho);
+  border-top: 1px solid var(--cyan-clair);
   border-left: 3px solid transparent;
   text-align: left;
   cursor: pointer;
@@ -150,29 +154,29 @@ button {
 }
 
 .liste-profils li:last-child .profil {
-  border-bottom: 1px solid var(--pancho);
+  border-bottom: 1px solid var(--cyan-clair);
 }
 
 .profil:hover,
 .profil:focus-visible {
-  border-left-color: var(--cerise);
+  border-left-color: var(--bleu);
   padding-left: 0.75rem;
 }
 
 .profil-nom {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.05rem;
 }
 
 .profil-role {
-  color: var(--cerise-profond);
+  color: var(--indigo);
   font-size: 0.95rem;
 }
 
 /* En-tête */
 .en-tete {
   background: var(--blanc);
-  border-bottom: 1px solid var(--pancho);
+  border-bottom: 1px solid var(--cyan-clair);
 }
 
 .en-tete-haut {
@@ -183,7 +187,6 @@ button {
   max-width: 640px;
   margin: 0 auto;
   padding: 0.9rem 1.5rem;
-  border-top: 3px solid var(--or);
 }
 
 .en-tete-persona {
@@ -197,12 +200,12 @@ button {
 }
 
 .persona-identite strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .bouton-discret {
   background: none;
-  border: 1px solid var(--pancho);
+  border: 1px solid var(--cyan-clair);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
   font-size: 0.85rem;
@@ -211,8 +214,8 @@ button {
 
 .bouton-discret:hover,
 .bouton-discret:focus-visible {
-  border-color: var(--cerise);
-  color: var(--cerise-profond);
+  border-color: var(--bleu);
+  color: var(--bleu-profond);
 }
 
 .en-tete-nav {
@@ -234,9 +237,9 @@ button {
 }
 
 .en-tete-nav details[open] summary {
-  color: var(--cerise-profond);
+  color: var(--bleu-profond);
   text-decoration: underline;
-  text-decoration-color: var(--cerise);
+  text-decoration-color: var(--bleu);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
@@ -249,7 +252,7 @@ button {
   position: absolute;
   top: 1.5rem;
   left: 0;
-  background: var(--pancho);
+  background: var(--cyan-clair);
   padding: 0.75rem 1rem;
   min-width: 14rem;
   z-index: 1;
@@ -267,45 +270,44 @@ button {
 }
 
 .en-tete-nav a:hover {
-  color: var(--cerise-profond);
+  color: var(--bleu-profond);
 }
 
-/* Chiffre clé : un seul par page, pour donner du poids à un fait réel */
+/* Chiffre clé : bandeau indigo, comme la charte le prescrit pour citations et chiffres */
 .chiffre-cle {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
-  background: var(--or-pale);
-  border-left: 4px solid var(--or);
+  background: var(--indigo);
+  border-left: 4px solid var(--rose);
   padding: 1rem 1.25rem;
 }
 
 .chiffre-cle strong {
-  font-family: var(--font-titre), var(--font-texte), sans-serif;
   font-size: 2rem;
-  color: var(--cerise-profond);
+  color: var(--blanc);
 }
 
 .chiffre-cle span {
   font-size: 0.95rem;
-  color: var(--encre);
+  color: var(--cyan-clair);
 }
 
-/* Appel à l'action */
+/* Appel à l'action : le rose est réservé à l'action, jamais à la décoration */
 .cta {
   display: inline-flex;
   align-self: flex-start;
-  background: var(--cerise);
+  background: var(--rose);
   color: var(--blanc);
   border: none;
   border-radius: 999px;
   padding: 0.75rem 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 }
 
 .cta:hover,
 .cta:focus-visible {
-  background: var(--cerise-profond);
+  background: var(--rose-profond);
 }
