@@ -17,4 +17,14 @@ test("Démo : le cas passant", async ({ page }) => {
     await page.getByText("Qui je suis").click();
     await expect(page.getByText("Organisatrice d'une action solidaire")).toBeVisible();
   });
+
+  await test.step("Je clique sur mon profil et j'arrive sur ma page organisateur", async () => {
+    await page.getByRole("link", { name: /Laura/ }).click();
+    await expect(page.getByRole("heading", { name: "Organiser une action solidaire" })).toBeVisible();
+  });
+
+  await test.step("J'accède au calendrier des événements", async () => {
+    await page.getByRole("link", { name: "Voir les actions déjà organisées" }).click();
+    await expect(page.getByRole("heading", { name: "Calendrier des événements" })).toBeVisible();
+  });
 });

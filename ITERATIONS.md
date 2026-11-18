@@ -64,6 +64,8 @@ Avec 2 itérations réalistes et la règle d'un écran nouveau au plus par itér
 
 ## Itération 2 : L'organisateur arrive sur sa page dédiée avec l'appel à l'action
 
+**Temps restant annoncé au début du codage** : 25-30 minutes ou plus (2026-11-18).
+
 - **Dans le périmètre** : page organisateur (contenu dédié, appel à l'action « Lancer une action solidaire », lien vers le calendrier — même si la page calendrier n'est qu'un stub pour l'instant).
 - **Hors périmètre** : calendrier filtrable, fiche action, pages des autres personas.
 - **Critères d'acceptation** :
@@ -75,7 +77,20 @@ Avec 2 itérations réalistes et la règle d'un écran nouveau au plus par itér
 - **Fichiers prévus** : page organisateur (nouvelle route), mise à jour du composant de navigation, stub de page calendrier.
 - **Tests unitaires prévus** : 1, sur la fonction qui associe un persona à sa route de destination.
 - **Étapes ajoutées à la démo** : clic sur « Organisateur » → vérification de l'affichage de l'appel à l'action.
-- **Bilan** : _à remplir en fin d'itération_
+- **Bilan** :
+  - Durée de codage réelle : 1 minute (pas de dépassement), d'après `.iterations/2.debut`/`.iterations/2.fin`.
+  - Critères satisfaits : les 3 critères sont codés et vérifiés par `curl` (`/organisateur` et `/calendrier` répondent 200 sur le port 8080) et par le test unitaire sur `routeDuProfil`. ⚠️ Comme pour l'itération 1, le parcours interactif (clic sur le persona → page organisateur → lien calendrier) n'a pas pu être rejoué dans un vrai navigateur sur cette machine : la démo Playwright échoue toujours sur la même dépendance système manquante (`libnspr4.so`), sans rapport avec le code. À confirmer par le développeur dans son navigateur.
+  - Rien de reporté sur cette itération.
+  - Le harnais n'a rien bloqué : `npm test` passe (4 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 2` a été accepté (`moteur_avance: false`, version 2 enregistrée).
+  - **Modifications** :
+    - `frontend/src/lib/navigation.ts` (nouveau) — `routeDuProfil()`, associe un persona à sa route de destination ; sert les 3 critères.
+    - `frontend/src/lib/navigation.test.ts` (nouveau) — 2 tests unitaires sur `routeDuProfil()`.
+    - `frontend/src/lib/usePersonaActif.ts` (nouveau) — hook partagé qui lit le persona actif et gère la redirection si absent ; extrait pour éviter la duplication entre `accueil` et `organisateur`.
+    - `frontend/src/components/EnTete.tsx` (nouveau) — en-tête partagée (persona actif, bouton « Changer de profil », navigation « Qui je suis » avec lien actif uniquement si `routeDuProfil` renvoie une route) ; critère 1.
+    - `frontend/src/app/accueil/page.tsx` (modifié) — utilise `usePersonaActif` et `EnTete` au lieu de sa propre logique dupliquée.
+    - `frontend/src/app/organisateur/page.tsx` (nouveau) — page dédiée, appel à l'action, lien vers le calendrier ; critères 1 et 2.
+    - `frontend/src/app/calendrier/page.tsx` (nouveau, stub) — cible du lien du critère 2.
+    - `e2e/demo.spec.ts` (modifié, hors DoD) — étapes « clic sur mon profil → page organisateur » et « accès au calendrier » ajoutées à la démo.
 
 ---
 
