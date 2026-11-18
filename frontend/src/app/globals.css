@@ -270,6 +270,27 @@ button {
   color: var(--cerise-profond);
 }
 
+/* Chiffre clé : un seul par page, pour donner du poids à un fait réel */
+.chiffre-cle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  background: var(--or-pale);
+  border-left: 4px solid var(--or);
+  padding: 1rem 1.25rem;
+}
+
+.chiffre-cle strong {
+  font-family: var(--font-titre), var(--font-texte), sans-serif;
+  font-size: 2rem;
+  color: var(--cerise-profond);
+}
+
+.chiffre-cle span {
+  font-size: 0.95rem;
+  color: var(--encre);
+}
+
 /* Appel à l'action */
 .cta {
   display: inline-flex;

@@ -21,6 +21,10 @@ export default function PageOrganisateur() {
           d&apos;Imagine for Margo ? Nous vous accompagnons de l&apos;idée à la
           réalisation.
         </p>
+        <p className="chiffre-cle">
+          <strong>200+</strong>
+          <span>actions organisées chaque année à son profit, partout en France</span>
+        </p>
         <Link href="/calendrier" className="cta">
           Voir les actions déjà organisées
         </Link>

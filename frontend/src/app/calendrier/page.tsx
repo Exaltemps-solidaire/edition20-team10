@@ -3,7 +3,10 @@ export default function Calendrier() {
     <div className="page">
       <main className="contenu">
         <h1>Calendrier des événements</h1>
-        <p>Bientôt disponible.</p>
+        <p>
+          Les événements organisés au profit d&apos;Imagine for Margo seront
+          bientôt regroupés ici, par type et par période.
+        </p>
       </main>
     </div>
   );

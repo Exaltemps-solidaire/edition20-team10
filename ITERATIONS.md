@@ -175,6 +175,29 @@ Retour du développeur après l'itération 4 : le design reste trop simple. Dema
     - `frontend/src/app/page.tsx` (modifié) — ajoute la marque au-dessus du titre ; critère 1.
     - `frontend/src/app/accueil/page.tsx` (modifié) — bande hero avec papillon et titre personnalisé ; critère 2.
 
+## Itération 6 : Design C (2/2) — organisateur et calendrier, un fait réel plutôt qu'une décoration
+
+- **Dans le périmètre** : page organisateur (chiffre clé « 200+ actions organisées chaque année », tiré de la passation, pas inventé) et calendrier (copie de l'état vide plus concrète), avec les tokens de l'itération 5.
+- **Hors périmètre** : contenu réel du calendrier (toujours un stub), photos (aucune disponible).
+- **Critères d'acceptation** :
+  - Étant donné la page organisateur, quand je la consulte, alors un chiffre clé réel (accent or) appuie l'appel à l'action.
+  - Étant donné la page calendrier, quand je la consulte, alors son état vide explique ce qui arrivera, plutôt qu'un simple « bientôt disponible ».
+  - Étant donné l'application déployée, quand j'appelle `/health` et `/sante`, alors je reçois toujours 200.
+- **Hypothèse de l'équipe couverte** : aucune directement.
+- **Codage estimé** : 5 minutes.
+- **Fichiers prévus** : `globals.css`, `organisateur/page.tsx`, `calendrier/page.tsx`.
+- **Tests unitaires prévus** : aucun nouveau (balisage/styles).
+- **Étapes ajoutées à la démo** : aucune.
+- **Bilan** :
+  - Durée de codage réelle : moins d'1 minute (pas de dépassement), d'après `.iterations/6.debut`/`.iterations/6.fin`.
+  - Critères satisfaits : vérifiés par lecture du code (`chiffre-cle` posé sur organisateur, copie mise à jour sur calendrier) et par `curl` (`/organisateur`, `/calendrier`, `/health`, `/sante` tous 200). ⚠️ Même limite que toutes les itérations de design : rendu visuel non capturable sur cette machine, à confirmer par le développeur dans son navigateur.
+  - Rien de reporté sur cette itération. Le chiffre clé « 200+ actions organisées chaque année » vient de `passation/contexte/association.md` : à confirmer par les cadreurs qu'il reste exact d'ici le pitch.
+  - Le harnais n'a rien bloqué : `npm test` passe (6 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 6` a été accepté (`moteur_avance: false`, version 6 enregistrée).
+  - **Modifications** :
+    - `frontend/src/app/globals.css` (modifié) — classe `.chiffre-cle` (nombre + libellé, accent or).
+    - `frontend/src/app/organisateur/page.tsx` (modifié) — ajoute le chiffre clé ; critère 1.
+    - `frontend/src/app/calendrier/page.tsx` (modifié) — copie de l'état vide plus concrète ; critère 2.
+
 ---
 
 ## À venir (liste ordonnée, non détaillée)
