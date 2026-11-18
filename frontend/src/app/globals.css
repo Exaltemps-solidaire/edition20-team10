@@ -2,6 +2,8 @@
   --cerise: #e44585;
   --cerise-profond: #a82f63;
   --pancho: #edc7a8;
+  --or: #c9a227;
+  --or-pale: #f4e8c8;
   --creme: #fbf6f1;
   --encre: #231f20;
   --blanc: #ffffff;
@@ -48,6 +50,51 @@ h2 {
 
 h1 {
   font-size: 2.25rem;
+}
+
+/* Bande d'accueil : le seul moment fort de la page, en plein bord */
+.bande-accueil {
+  background: linear-gradient(135deg, var(--or-pale), var(--pancho) 70%);
+  border-bottom: 1px solid var(--pancho);
+}
+
+.bande-accueil-interieur {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.bande-accueil .papillon {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+}
+
+.bande-accueil h1 {
+  font-size: 2.5rem;
+}
+
+.bande-accueil p {
+  margin-top: 0.4rem;
+  color: var(--cerise-profond);
+  font-size: 1.05rem;
+}
+
+.marque {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-titre), var(--font-texte), sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.marque .papillon {
+  width: 1.4rem;
+  height: 1.4rem;
 }
 
 button {
@@ -136,6 +183,13 @@ button {
   max-width: 640px;
   margin: 0 auto;
   padding: 0.9rem 1.5rem;
+  border-top: 3px solid var(--or);
+}
+
+.en-tete-persona {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .persona-identite {

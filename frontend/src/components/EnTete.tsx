@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { personas, type Persona } from "../lib/personas";
 import { routeDuProfil } from "../lib/navigation";
+import { Papillon } from "./Papillon";
 
 export function EnTete({
   personaActif,
@@ -12,12 +13,18 @@ export function EnTete({
   return (
     <header className="en-tete">
       <div className="en-tete-haut">
-        <span className="persona-identite">
-          <strong>{personaActif.nom}</strong> — {personaActif.role}
+        <span className="marque">
+          <Papillon className="papillon" />
+          Imagine for Margo
         </span>
-        <button type="button" className="bouton-discret" onClick={onChangerDePersona}>
-          Changer de profil
-        </button>
+        <div className="en-tete-persona">
+          <span className="persona-identite">
+            <strong>{personaActif.nom}</strong> — {personaActif.role}
+          </span>
+          <button type="button" className="bouton-discret" onClick={onChangerDePersona}>
+            Changer de profil
+          </button>
+        </div>
       </div>
       <nav className="en-tete-nav">
         <details>

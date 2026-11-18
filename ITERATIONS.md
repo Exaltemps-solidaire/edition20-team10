@@ -146,6 +146,35 @@ Demande du développeur en cours de session (temps restant annoncé : 60 minutes
     - `frontend/src/app/organisateur/page.tsx` (modifié) — classes `page`/`contenu`/`cta` ; critère 1.
     - `frontend/src/app/calendrier/page.tsx` (modifié) — classes `page`/`contenu` ; critère 2.
 
+## ⚠️ Design jugé encore trop simple — accès au site officiel impossible depuis cette machine
+
+Retour du développeur après l'itération 4 : le design reste trop simple. Demande : utiliser la charte officielle et récupérer les éléments du site réel. ❗️ Impossible : `WebFetch` est bloqué sur tout domaine externe dans ce harnais (y compris Wikipedia) — je ne peux ni consulter `imagineformargo.org`, ni télécharger son logo. Avec l'accord du développeur, j'enrichis avec ce qui est vérifiable par recherche : la palette Brandfetch (cerise, pancho, noir), la couleur or de la campagne annuelle « Septembre en Or », et un papillon dessiné en hommage à leur symbole (pas leur logo protégé). À faire confirmer par les cadreurs/l'association avant le pitch.
+
+## Itération 5 : Design C (1/2) — hiérarchie visuelle et motif papillon sur le choix de profil et l'accueil
+
+- **Dans le périmètre** : nouveaux tokens (`--or`, `--or-pale`), composant `Papillon` (SVG), bande d'accueil (hero) avec papillon + titre personnalisé, marque « Imagine for Margo » dans l'en-tête et sur l'écran de choix de profil.
+- **Hors périmètre** : organisateur et calendrier (Design C, 2/2), toute photo (aucune disponible sans accès au site).
+- **Critères d'acceptation** :
+  - Étant donné l'écran « Qui êtes-vous ? », quand je le consulte, alors la marque (papillon + nom) est visible en haut du contenu.
+  - Étant donné l'accueil, quand je le consulte, alors une bande hero distincte (fond or/pancho, papillon, titre agrandi) marque l'entrée dans le parcours.
+  - Étant donné l'application déployée, quand j'appelle `/health` et `/sante`, alors je reçois toujours 200.
+- **Hypothèse de l'équipe couverte** : aucune directement — retour du développeur sur la qualité visuelle.
+- **Codage estimé** : 10 minutes.
+- **Fichiers prévus** : `globals.css`, `components/Papillon.tsx` (nouveau), `components/EnTete.tsx`, `app/page.tsx`, `app/accueil/page.tsx`.
+- **Tests unitaires prévus** : aucun nouveau (balisage/styles).
+- **Étapes ajoutées à la démo** : aucune.
+- **Bilan** :
+  - Durée de codage réelle : moins d'1 minute (pas de dépassement), d'après `.iterations/5.debut`/`.iterations/5.fin`.
+  - Critères satisfaits : vérifiés par `curl localhost:8080/` (classes `marque`, `papillon` présentes dans le HTML exporté du choix de profil) et `/health`, `/sante` à 200. ⚠️ La bande hero de l'accueil n'a pas pu être vérifiée dans le HTML exporté : `/accueil` est une route gated côté client (retourne `null` tant que `localStorage` n'est pas lu), donc rien d'utile à grep avant hydratation — comme pour les itérations précédentes, seul un navigateur réel le confirme.
+  - Rien de reporté sur cette itération.
+  - Le harnais n'a rien bloqué : `npm test` passe (6 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 5` a été accepté (`moteur_avance: false`, version 5 enregistrée).
+  - **Modifications** :
+    - `frontend/src/components/Papillon.tsx` (nouveau) — papillon en hommage au symbole de l'association, deux ailes cerise/or ; sert les deux critères.
+    - `frontend/src/app/globals.css` (modifié) — tokens `--or`/`--or-pale`, classes `.bande-accueil`, `.marque`, `.en-tete-persona`.
+    - `frontend/src/components/EnTete.tsx` (modifié) — ajoute la marque (papillon + nom) à gauche de l'en-tête ; critère 1.
+    - `frontend/src/app/page.tsx` (modifié) — ajoute la marque au-dessus du titre ; critère 1.
+    - `frontend/src/app/accueil/page.tsx` (modifié) — bande hero avec papillon et titre personnalisé ; critère 2.
+
 ---
 
 ## À venir (liste ordonnée, non détaillée)
