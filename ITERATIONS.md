@@ -94,6 +94,42 @@ Avec 2 itérations réalistes et la règle d'un écran nouveau au plus par itér
 
 ---
 
+## ⚠️ Changement de priorité (à valider par les cadreurs)
+
+Demande du développeur en cours de session (temps restant annoncé : 60 minutes) : le design passe devant les nouveaux écrans, pour que le prototype soit exploitable. Deux itérations de design s'intercalent donc avant la suite de la liste « À venir ». `contexte/association.md` rappelle *« on applique la charte, on ne la refait pas »* ; la charte réelle n'étant pas dans la passation, les itérations de design s'appuient sur la palette de marque publique d'Imagine for Margo (cerise #E44585, pancho #EDC7A8, noir), trouvée en ligne plutôt qu'inventée — à faire confirmer par les cadreurs/l'association.
+
+## Itération 3 : Design A — tokens visuels, choix de persona et accueil
+
+- **Dans le périmètre** : palette et typographies de marque (`globals.css`, `layout.tsx`), restylage de l'écran « Qui êtes-vous ? » et de l'accueil, polish de l'en-tête (`EnTete`).
+- **Hors périmètre** : page organisateur et calendrier (Design B), contenu des segments « Ce que je cherche »/« Quand ».
+- **Critères d'acceptation** :
+  - Étant donné l'écran « Qui êtes-vous ? », quand je le consulte, alors les couleurs de marque (cerise, pancho) et les deux typographies choisies s'affichent au lieu du gabarit par défaut.
+  - Étant donné l'accueil, quand je le consulte, alors l'en-tête et le contenu utilisent les mêmes tokens visuels.
+  - Étant donné l'application déployée, quand j'appelle `/health` et `/sante`, alors je reçois toujours 200.
+- **Hypothèse de l'équipe couverte** : aucune directement — demande du développeur, pas une hypothèse du PRD.
+- **Codage estimé** : 10 minutes.
+- **Fichiers prévus** : `globals.css`, `layout.tsx`, `page.tsx`, `accueil/page.tsx`, `EnTete.tsx`.
+- **Tests unitaires prévus** : aucun nouveau — pas de nouvelle logique métier, uniquement du balisage et des styles (cf. DoD point 2 : pas de test sur du balisage pur).
+- **Étapes ajoutées à la démo** : aucune (pas de nouveau parcours, seulement un changement visuel).
+- **Bilan** :
+  - Durée de codage réelle : 1 minute (pas de dépassement), d'après `.iterations/3.debut`/`.iterations/3.fin`.
+  - Critères satisfaits : les 3 critères sont vérifiés — classes et polices de marque présentes dans le HTML exporté (`grep class=... out/index.html`), `/health` et `/sante` toujours 200 après redéploiement. ⚠️ Le rendu visuel réel (couleurs, espacements à l'écran) n'a pas pu être capturé par une capture d'écran sur cette machine : la même dépendance système manquante (`libnspr4.so`) bloque aussi les outils de capture headless, pas seulement la démo Playwright. À confirmer par le développeur dans son navigateur.
+  - Rien de reporté sur cette itération.
+  - Le harnais n'a rien bloqué : `npm test` passe (6 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 3` a été accepté (`moteur_avance: false`, version 3 enregistrée).
+  - **Modifications** :
+    - `frontend/src/app/globals.css` (réécrit) — tokens de couleur (cerise, pancho, creme, encre) et classes partagées (page, contenu, liste-profils, en-tête, cta) ; critères 1 et 2.
+    - `frontend/src/app/layout.tsx` (modifié) — polices Fredoka (titres) et Work Sans (texte) via `next/font/google`, métadonnées réelles ; critère 1.
+    - `frontend/src/app/page.module.css` (supprimé) — gabarit par défaut inutilisé, remplacé par les classes de `globals.css`.
+    - `frontend/src/app/page.tsx` (modifié) — écran « Qui êtes-vous ? » restylé en liste de profils (portes d'entrée) ; critère 1.
+    - `frontend/src/app/accueil/page.tsx` (modifié) — applique les classes partagées ; critère 2.
+    - `frontend/src/components/EnTete.tsx` (modifié) — en-tête restylée (identité, navigation à 3 segments) ; critère 2.
+
+## Itération 4 : Design B — page organisateur et calendrier (à détailler au prochain `/iteration`)
+
+Même principe que l'itération 3, appliqué à `organisateur/page.tsx` et `calendrier/page.tsx` avec les tokens déjà posés. Pas de nouveau token attendu : réutilisation de ceux de l'itération 3.
+
+---
+
 ## À venir (liste ordonnée, non détaillée)
 
 1. Calendrier des événements : filtrage par type et par période, cartes avec photo et description.

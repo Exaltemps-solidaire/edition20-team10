@@ -11,9 +11,9 @@ export default function Accueil() {
   }
 
   return (
-    <div>
+    <div className="page">
       <EnTete personaActif={personaActif} onChangerDePersona={changerDePersona} />
-      <main>
+      <main className="contenu">
         <h1>Imagine for Margo</h1>
         <p>Bienvenue sur votre parcours, {personaActif.nom}.</p>
       </main>

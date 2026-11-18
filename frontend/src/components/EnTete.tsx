@@ -10,16 +10,16 @@ export function EnTete({
   onChangerDePersona: () => void;
 }) {
   return (
-    <header>
-      <nav>
-        <span>
-          {personaActif.nom} — {personaActif.role}
+    <header className="en-tete">
+      <div className="en-tete-haut">
+        <span className="persona-identite">
+          <strong>{personaActif.nom}</strong> — {personaActif.role}
         </span>
-        <button type="button" onClick={onChangerDePersona}>
+        <button type="button" className="bouton-discret" onClick={onChangerDePersona}>
           Changer de profil
         </button>
-      </nav>
-      <nav>
+      </div>
+      <nav className="en-tete-nav">
         <details>
           <summary>Qui je suis</summary>
           <ul>

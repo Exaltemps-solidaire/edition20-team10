@@ -1,34 +1,10 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --cerise: #e44585;
+  --cerise-profond: #a82f63;
+  --pancho: #edc7a8;
+  --creme: #fbf6f1;
+  --encre: #231f20;
+  --blanc: #ffffff;
 }
 
 * {
@@ -37,13 +13,224 @@ body {
   margin: 0;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--encre);
+  background: var(--creme);
+  font-family: var(--font-texte), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 a {
   color: inherit;
+}
+
+h1,
+h2 {
+  font-family: var(--font-titre), var(--font-texte), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Gabarit de page */
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenu {
+  flex: 1;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contenu > p {
+  max-width: 52ch;
+  line-height: 1.6;
+  color: var(--encre);
+}
+
+/* Liste de profils : chacun est une porte d'entrée, pas une carte */
+.liste-profils {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.profil {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0.25rem;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--pancho);
+  border-left: 3px solid transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: border-left-color 0.15s ease, padding-left 0.15s ease;
+}
+
+.liste-profils li:last-child .profil {
+  border-bottom: 1px solid var(--pancho);
+}
+
+.profil:hover,
+.profil:focus-visible {
+  border-left-color: var(--cerise);
+  padding-left: 0.75rem;
+}
+
+.profil-nom {
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.profil-role {
+  color: var(--cerise-profond);
+  font-size: 0.95rem;
+}
+
+/* En-tête */
+.en-tete {
+  background: var(--blanc);
+  border-bottom: 1px solid var(--pancho);
+}
+
+.en-tete-haut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+}
+
+.persona-identite {
+  font-size: 0.95rem;
+}
+
+.persona-identite strong {
+  font-weight: 500;
+}
+
+.bouton-discret {
+  background: none;
+  border: 1px solid var(--pancho);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.bouton-discret:hover,
+.bouton-discret:focus-visible {
+  border-color: var(--cerise);
+  color: var(--cerise-profond);
+}
+
+.en-tete-nav {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1.5rem 0.75rem;
+}
+
+.en-tete-nav summary {
+  cursor: pointer;
+  font-size: 0.95rem;
+  list-style: none;
+}
+
+.en-tete-nav summary::-webkit-details-marker {
+  display: none;
+}
+
+.en-tete-nav details[open] summary {
+  color: var(--cerise-profond);
+  text-decoration: underline;
+  text-decoration-color: var(--cerise);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.en-tete-nav details {
+  position: relative;
+}
+
+.en-tete-nav details[open] > :not(summary) {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  background: var(--pancho);
+  padding: 0.75rem 1rem;
+  min-width: 14rem;
+  z-index: 1;
+}
+
+.en-tete-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.en-tete-nav a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.en-tete-nav a:hover {
+  color: var(--cerise-profond);
+}
+
+/* Appel à l'action */
+.cta {
+  display: inline-flex;
+  align-self: flex-start;
+  background: var(--cerise);
+  color: var(--blanc);
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: var(--cerise-profond);
 }
