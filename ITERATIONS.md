@@ -237,3 +237,27 @@ Le développeur a extrait un design system directement du site officiel (`passat
 3. Page de profil donateur : dons passés, participations, impact en mode gamification, lien visible vers le don (iRaiser).
 4. Parcours entreprise mécène et testateur (non cadrés dans la passation au-delà des jobs-to-be-done).
 5. Design — fidélité restante à `design.md` : boutons exacts (pill don, outline bleu, outline blanc), bandeau citation avec papillons en filigrane, assets SVG réels (rayures hachurées, traits manuscrits), wordmark du logo (bleu + script).
+
+## Itération 8 : page d'accueil de présentation de l'association
+
+Demande du développeur en cours de session : `/` servait de choix de persona, pas de vraie page d'accueil. À sa demande explicite, l'agent n'a plus redemandé le temps restant à partir de cette itération — « on doit avancer et vite ».
+
+- **Dans le périmètre** : `/` devient la page de présentation de l'association (RUP depuis 2024, créée en 2011, label IDEAS, 4 missions, un chiffre réel) avec un appel à l'action vers le parcours ; le choix de persona migre sur `/qui-etes-vous` ; `usePersonaActif` redirige désormais vers cette route.
+- **Hors périmètre** : photos, sous-marques (Enfants sans Cancer, Rallye du Cœur).
+- **Critères d'acceptation** :
+  - Étant donné `/`, quand je la consulte, alors je vois une présentation de l'association avec un fait chiffré et un bouton vers le parcours. ✅
+  - Étant donné ce bouton, quand je clique dessus, alors j'arrive sur `/qui-etes-vous`. ✅
+  - Étant donné l'application déployée, `/sante` et `/health` répondent toujours 200. ✅
+- **Codage estimé** : 8 minutes.
+- **Bilan** :
+  - Durée de codage réelle : moins d'1 minute (pas de dépassement), d'après `.iterations/8.debut`/`.iterations/8.fin`.
+  - Critères satisfaits : vérifiés par `curl` (`/` contient « Face au cancer, nous agissons. », `/qui-etes-vous` répond 200, `/sante` et `/health` toujours 200) et par lecture du code. ⚠️ Le clic réel sur le bouton n'a pas pu être rejoué dans un navigateur sur cette machine (même limite `libnspr4.so` que toutes les itérations précédentes).
+  - Les 4 missions et les chiffres (créée en 2011, RUP 2024, label IDEAS 2018, 1 800 bénévoles) viennent de `passation/contexte/association.md` — à confirmer par les cadreurs avant le pitch, comme le chiffre de l'itération 6.
+  - Rien de reporté.
+  - Le harnais n'a rien bloqué : `npm test` passe (4 tests), `./scripts/verifier-deployabilite.sh` ne signale aucune borne, `./scripts/signaler-version.sh 8` a été accepté (`moteur_avance: false`, version 8 enregistrée).
+  - **Modifications** :
+    - `frontend/src/app/page.tsx` (réécrit) — page de présentation de l'association ; critères 1 et 2.
+    - `frontend/src/app/qui-etes-vous/page.tsx` (nouveau) — ancien contenu de `page.tsx`, déplacé sans changement ; critère 2.
+    - `frontend/src/app/globals.css` (modifié) — classe `.liste-missions` et ses sous-éléments.
+    - `frontend/src/lib/usePersonaActif.ts` (modifié) — redirections vers `/qui-etes-vous` au lieu de `/`.
+    - `e2e/demo.spec.ts` (modifié, hors DoD) — étape d'ouverture sur la page de présentation puis clic sur « Trouver mon parcours » ajoutées avant le choix de persona.

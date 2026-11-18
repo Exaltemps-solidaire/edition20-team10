@@ -11,21 +11,22 @@ function lirePersonaActif(): Persona | undefined {
   return trouverPersona(window.localStorage.getItem(PERSONA_STORAGE_KEY));
 }
 
-// Pas de connexion réelle : le persona choisi sur "/" est mémorisé dans le
-// localStorage du navigateur, et relu sur chaque écran qui en a besoin.
+// Pas de connexion réelle : le persona choisi sur "/qui-etes-vous" est
+// mémorisé dans le localStorage du navigateur, et relu sur chaque écran qui
+// en a besoin.
 export function usePersonaActif() {
   const router = useRouter();
   const [personaActif] = useState<Persona | undefined>(lirePersonaActif);
 
   useEffect(() => {
     if (!personaActif) {
-      router.replace("/");
+      router.replace("/qui-etes-vous");
     }
   }, [personaActif, router]);
 
   function changerDePersona() {
     window.localStorage.removeItem(PERSONA_STORAGE_KEY);
-    router.push("/");
+    router.push("/qui-etes-vous");
   }
 
   return { personaActif, changerDePersona };
